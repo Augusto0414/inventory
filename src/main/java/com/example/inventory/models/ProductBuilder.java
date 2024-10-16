@@ -15,13 +15,10 @@ public class ProductBuilder {
     }
 
     public Product build(String type) {
-        if ("electronics".equalsIgnoreCase(type)) {
-            return new ElectronicsProduct(name, price);
-        } else if ("clothing".equalsIgnoreCase(type)) {
-            return new ClothingProduct(name, price);
-        }else if ("furniture".equalsIgnoreCase(type)) {
-            return new FurnitureProduct(name, price);
-        }
-        return null;
+        return switch (type.toLowerCase()) {
+            case "electronics" -> new ElectronicsProduct(name, price);
+            case "clothing" -> new ClothingProduct(name, price);
+            default -> null;
+        };
     }
 }
